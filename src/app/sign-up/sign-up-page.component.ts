@@ -39,13 +39,7 @@ export class SignUpPage implements OnInit {
         this.signUpForm = new FormGroup({
             emailAddress: new FormControl('', [Validators.required, Validators.email]),
             password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-            name: new FormControl('', [Validators.required, SignUpPage.noSpacesOnlyValidator]),
-            accountNumber: new FormControl('', [
-                Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern(/^\d+$/)
-            ]),
-            sortCode: new FormControl('', [
-                Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(/^\d+$/)
-            ])
+            name: new FormControl('', [Validators.required, SignUpPage.noSpacesOnlyValidator])
         });
 
         this.actions$.pipe(takeUntil(this.unsubscribe)).subscribe((action: StoreAction) => {
@@ -73,9 +67,7 @@ export class SignUpPage implements OnInit {
             const payload: SignUpPayload = {
                 email_address: this.signUpForm.controls.emailAddress.value,
                 password: this.signUpForm.controls.password.value,
-                name: this.signUpForm.controls.name.value,
-                account_number: this.signUpForm.controls.accountNumber.value,
-                sort_code: this.signUpForm.controls.sortCode.value
+                name: this.signUpForm.controls.name.value
             };
             this.store.dispatch(new UserActions.SignUpRequest(payload));
         // });

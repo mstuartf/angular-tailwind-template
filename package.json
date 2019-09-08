@@ -5,7 +5,7 @@
   "scripts": {
     "cy": "npx cypress open",
     "cy:run": "npx cypress run",
-    "local": "cp src/environments/environment.local.ts src/environments/environment.ts"
+    "local": "cp src/environments/environment.local.ts src/environments/environment.ts && ng serve"
   },
   "private": true,
   "dependencies": {

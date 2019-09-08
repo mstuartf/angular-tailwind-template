@@ -16,7 +16,6 @@ export class UserService {
     }
 
     public getToken(): string {
-        console.log(localStorage.getItem(environment.tokenKey));
         return JSON.parse(localStorage.getItem(environment.tokenKey));
     }
 

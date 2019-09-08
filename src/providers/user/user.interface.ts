@@ -17,7 +17,5 @@ export interface SignUpPayload {
     email_address: string;
     password: string;
     name: string;
-    account_number: string;
-    sort_code: string;
 }
 
