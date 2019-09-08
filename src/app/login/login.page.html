@@ -1,0 +1,36 @@
+<h1>
+  Login
+</h1>
+
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <div class="ion-no-margin ion-no-padding">
+
+      <div>
+        <label>Email address</label>
+        <input required type="email" formControlName="emailAddress" data-cy="'emailAddressInput'"/>
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input required type="password" formControlName="password" data-cy="'passwordInput'"/>
+      </div>
+
+    </div>
+
+    <div>
+      <button data-cy="'loginButton'" type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button data-cy="'signUpButton'" type="button" [routerLink]="['/external/sign-up']">Sign up</button>
+    </div>
+
+    <div data-cy="emailWarning" *ngIf="!loginForm.controls.emailAddress.valid && loginForm.controls.emailAddress.dirty && loginForm.controls.emailAddress.touched" class="validator-error">
+      Please enter a valid email address.
+    </div>
+
+    <div data-cy="passwordWarning" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty && loginForm.controls.password.touched" class="error-message">
+      Please enter a password containing at least 8 characters.
+    </div>
+
+</form>
+

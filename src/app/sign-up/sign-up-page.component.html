@@ -1,0 +1,63 @@
+<h1>Signup</h1>
+<button data-cy="backButton" [routerLink]="['/external/login']">Back</button>
+
+<div>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+
+    <div>
+
+      <div>
+        <label>Email address</label>
+        <input data-cy="emailAddressInput" required type="email" formControlName="emailAddress"/>
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input data-cy="passwordInput" required type="password" formControlName="password"/>
+      </div>
+
+      <div>
+        <label>Name</label>
+        <input data-cy="nameInput" required type="text" formControlName="name"/>
+      </div>
+
+      <div>
+        <label>Sort Code</label>
+        <input data-cy="sortCodeInput" required type="text" formControlName="sortCode"/>
+      </div>
+
+      <div>
+        <label>Account Number</label>
+        <input data-cy="accountNumberInput" required type="text" formControlName="accountNumber"/>
+      </div>
+
+    </div>
+
+    <div>
+      <button data-cy="signUpButton" type="submit" [disabled]="signUpForm.invalid">Sign up</button>
+    </div>
+
+    <div data-cy="emailWarning" *ngIf="!signUpForm.controls.emailAddress.valid && signUpForm.controls.emailAddress.dirty && signUpForm.controls.emailAddress.touched" class="validator-error">
+      Please enter a valid email address.
+    </div>
+
+    <div data-cy="passwordWarning" *ngIf="!signUpForm.controls.password.valid && signUpForm.controls.password.dirty && signUpForm.controls.password.touched" class="error-message">
+      Please enter a password containing at least 8 characters.
+    </div>
+
+    <div data-cy="sortCodeWarning" *ngIf="!signUpForm.controls.sortCode.valid && signUpForm.controls.sortCode.dirty && signUpForm.controls.sortCode.touched" class="error-message">
+      Please enter your 6-digit sort code.
+    </div>
+
+    <div data-cy="accountNumberWarning" *ngIf="!signUpForm.controls.accountNumber.valid && signUpForm.controls.accountNumber.dirty && signUpForm.controls.accountNumber.touched" class="error-message">
+      Please enter your 8-digit account number.
+    </div>
+
+    <div data-cy="nameWarning" *ngIf="!signUpForm.controls.name.valid && signUpForm.controls.name.dirty && signUpForm.controls.name.touched" class="error-message">
+      Please enter your trading name.
+    </div>
+
+</form>
+
+</div>
