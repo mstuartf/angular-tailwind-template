@@ -1,36 +1,47 @@
-<h1>
-  Login
-</h1>
+<div class="h-screen w-screen flex items-center justify-center bg-gray-200 px-2">
 
+    <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col">
 
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <h1 class="text-4xl text-center mb-4">
+            Login
+        </h1>
 
-    <div class="ion-no-margin ion-no-padding">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-      <div>
-        <label>Email address</label>
-        <input required type="email" formControlName="emailAddress" data-cy="'emailAddressInput'"/>
-      </div>
+            <div class="mb-4">
+                <input placeholder="Email" required type="email" formControlName="emailAddress"
+                       data-cy="'emailAddressInput'"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker">
+            </div>
 
-      <div>
-        <label>Password</label>
-        <input required type="password" formControlName="password" data-cy="'passwordInput'"/>
-      </div>
+            <div class="mb-4">
+                <input placeholder="Password" required type="password" formControlName="password" data-cy="'passwordInput'"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"/>
+            </div>
+
+            <div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-cy="'loginButton'"
+                        type="submit" [disabled]="loginForm.invalid">Login
+                </button>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2"
+                        data-cy="'signUpButton'" type="button" [routerLink]="['/external/sign-up']">Sign up
+                </button>
+            </div>
+
+            <div data-cy="emailWarning"
+                 *ngIf="!loginForm.controls.emailAddress.valid && loginForm.controls.emailAddress.dirty && loginForm.controls.emailAddress.touched"
+                 class="validator-error">
+                Please enter a valid email address.
+            </div>
+
+            <div data-cy="passwordWarning"
+                 *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty && loginForm.controls.password.touched"
+                 class="error-message">
+                Please enter a password containing at least 8 characters.
+            </div>
+
+        </form>
 
     </div>
 
-    <div>
-      <button data-cy="'loginButton'" type="submit" [disabled]="loginForm.invalid">Login</button>
-      <button data-cy="'signUpButton'" type="button" [routerLink]="['/external/sign-up']">Sign up</button>
-    </div>
-
-    <div data-cy="emailWarning" *ngIf="!loginForm.controls.emailAddress.valid && loginForm.controls.emailAddress.dirty && loginForm.controls.emailAddress.touched" class="validator-error">
-      Please enter a valid email address.
-    </div>
-
-    <div data-cy="passwordWarning" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty && loginForm.controls.password.touched" class="error-message">
-      Please enter a password containing at least 8 characters.
-    </div>
-
-</form>
-
+</div>

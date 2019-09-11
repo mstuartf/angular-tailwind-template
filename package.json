@@ -5,7 +5,10 @@
   "scripts": {
     "cy": "npx cypress open",
     "cy:run": "npx cypress run",
-    "local": "cp src/environments/environment.local.ts src/environments/environment.ts && ng serve"
+    "local": "cp src/environments/environment.local.ts src/environments/environment.ts && ng serve & ngtw watch",
+    "prestart": "ngtw build",
+    "start": "ng serve & ngtw watch",
+    "build": "ngtw build --purge && ng build"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +45,7 @@
     "cypress": "^3.4.0",
     "googleapis": "^42.0.0",
     "protractor": "~5.4.0",
+    "tailwindcss": "^1.1.2",
     "ts-loader": "^6.0.4",
     "ts-node": "~8.3.0",
     "tslint": "~5.17.0",
