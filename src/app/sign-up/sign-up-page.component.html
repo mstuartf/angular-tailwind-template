@@ -1,45 +1,44 @@
-<h1>Signup</h1>
-<button data-cy="backButton" [routerLink]="['/external/login']">Back</button>
+<div class="h-screen w-screen flex items-center justify-center bg-gray-200 px-2">
 
-<div>
+  <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col">
 
-  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <h1 class="text-4xl text-center mb-4 text-gray-700">
+      Sign up
+    </h1>
 
-    <div>
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="py-3">
 
-      <div>
-        <label>Email address</label>
-        <input data-cy="emailAddressInput" required type="email" formControlName="emailAddress"/>
+      <input placeholder="Email" required type="email" formControlName="emailAddress"
+             data-cy="'emailAddressInput'"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker">
+
+      <div data-cy="emailWarning"
+           [class.invisible]="!(!signUpForm.controls.emailAddress.valid && signUpForm.controls.emailAddress.dirty && signUpForm.controls.emailAddress.touched)"
+           class="px-3 text-red-400 pt-1 pb-2 text-sm">
+        Please enter a valid email address.
       </div>
 
-      <div>
-        <label>Password</label>
-        <input data-cy="passwordInput" required type="password" formControlName="password"/>
+      <input placeholder="Password" required type="password" formControlName="password" data-cy="passwordInput"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"/>
+
+      <div data-cy="passwordWarning"
+           [class.invisible]="!(!signUpForm.controls.password.valid && signUpForm.controls.password.dirty && signUpForm.controls.password.touched)"
+           class="px-3 text-red-400 pt-1 pb-2 text-sm">
+        Please enter a password containing at least 8 characters.
       </div>
 
-      <div>
-        <label>Name</label>
-        <input data-cy="nameInput" required type="text" formControlName="name"/>
+      <div class="flex justify-between">
+        <button class="bg-transparent text-blue-400 hover:text-blue-700 py-2"
+                data-cy="signUpButton" type="button" [routerLink]="['/external/login']">Login
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                data-cy="loginButton"
+                type="submit" [disabled]="signUpForm.invalid">Sign up
+        </button>
       </div>
 
-    </div>
+    </form>
 
-    <div>
-      <button data-cy="signUpButton" type="submit" [disabled]="signUpForm.invalid">Sign up</button>
-    </div>
-
-    <div data-cy="emailWarning" *ngIf="!signUpForm.controls.emailAddress.valid && signUpForm.controls.emailAddress.dirty && signUpForm.controls.emailAddress.touched" class="validator-error">
-      Please enter a valid email address.
-    </div>
-
-    <div data-cy="passwordWarning" *ngIf="!signUpForm.controls.password.valid && signUpForm.controls.password.dirty && signUpForm.controls.password.touched" class="error-message">
-      Please enter a password containing at least 8 characters.
-    </div>
-
-    <div data-cy="nameWarning" *ngIf="!signUpForm.controls.name.valid && signUpForm.controls.name.dirty && signUpForm.controls.name.touched" class="error-message">
-      Please enter your name.
-    </div>
-
-</form>
+  </div>
 
 </div>
