@@ -5,6 +5,7 @@
   "scripts": {
     "cy": "npx cypress open",
     "cy:run": "npx cypress run",
+    "mock": "cp src/environments/environment.mock.ts src/environments/environment.ts && ng serve & ngtw watch",
     "local": "cp src/environments/environment.local.ts src/environments/environment.ts && ng serve & ngtw watch",
     "prestart": "ngtw build",
     "start": "ng serve & ngtw watch",
