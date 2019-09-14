@@ -5,12 +5,12 @@
     </div>
     <div class="flex-grow flex items-center w-auto">
         <div class="text-sm flex-grow">
-            <a href="" class="mt-0 inline-block text-teal-200 hover:text-white mr-4">
+            <span [routerLink]="['home']" class="mt-0 inline-block hover:text-white mr-4 outline-none cursor-pointer" [ngClass]="[activeUrl === '/internal/home' ? 'text-white' : 'text-teal-200']">
                 Home
-            </a>
-            <a href="" class="mt-0 inline-block text-teal-200 hover:text-white">
+            </span>
+            <span [routerLink]="['settings']"  class="mt-0 inline-block hover:text-white outline-none cursor-pointer" [ngClass]="[activeUrl === '/internal/settings' ? 'text-white' : 'text-teal-200']">
                 Settings
-            </a>
+            </span>
         </div>
         <div>
             <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-0">

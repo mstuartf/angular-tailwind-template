@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-internal',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InternalPage implements OnInit {
 
-  constructor() { }
+  public activeUrl: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.activeUrl = this.router.url;
+      console.log(this.activeUrl);
+    });
   }
 
 }

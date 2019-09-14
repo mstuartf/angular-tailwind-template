@@ -12,6 +12,7 @@ const routes: Routes = [
         path: '', component: InternalPage, canActivate: [InternalGuard],
         children: [
             {path: 'home', loadChildren: '../home/home.module#HomePageModule'},
+            {path: 'settings', loadChildren: '../settings/settings.module#SettingsPageModule'},
             {path: '', redirectTo: 'home', pathMatch: 'full'}
         ]
     }
