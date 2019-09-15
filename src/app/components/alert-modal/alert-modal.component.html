@@ -1,0 +1,19 @@
+<div *ngIf="config" class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col">
+
+  <h1 class="text-3xl text-center mb-4 text-gray-700">
+    {{config.header}}
+  </h1>
+
+  <p class="text-gray-600 mb-4">
+    {{config.message}}
+  </p>
+
+  <button class="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded mt-4" (click)="clicked(false)" *ngIf="config.cancel">
+    {{config.cancel}}
+  </button>
+
+  <button class="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded mt-4" (click)="clicked(true)">
+    {{config.confirm}}
+  </button>
+
+</div>

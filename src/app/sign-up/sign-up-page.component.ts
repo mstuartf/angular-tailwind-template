@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SignUpPayload } from '../../providers/user/user.interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../state/app.state';
-import { Actions } from '@ngrx/effects';
-import { takeUntil } from 'rxjs/operators';
-import { StoreAction } from '../../state/store-action.interface';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SignUpPayload} from '../../providers/user/user.interface';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../state/app.state';
+import {Actions} from '@ngrx/effects';
+import {takeUntil} from 'rxjs/operators';
+import {StoreAction} from '../../state/store-action.interface';
 import * as UserActions from '../../providers/user/user.actions';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
+import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
+import {CustomErrorResponse} from '../../providers/api/api.interface';
+import {AlertModalConfig} from '../components/alert-modal/alert-modal.component';
 
 @Component({
     selector: 'app-sign-up',
@@ -26,6 +27,7 @@ export class SignUpPage implements OnInit {
 
     public signUpForm: FormGroup;
     public showLoading: boolean;
+    public alertConfig: AlertModalConfig;
     private unsubscribe = new Subject();
 
     private static noSpacesOnlyValidator(control: FormControl) {
@@ -75,9 +77,17 @@ export class SignUpPage implements OnInit {
         this.showLoading = false;
     }
 
-    private signUpFailure(response: HttpErrorResponse): void {
+    private signUpFailure(response: CustomErrorResponse): void {
         this.showLoading = false;
-        // this.presentAlert(response.error);
+        this.alertConfig = {
+            header: response.error.header,
+            message: response.error.message,
+            confirm: 'ok'
+        };
+    }
+
+    public errorAlertCallback(): void {
+        this.alertConfig = null;
     }
 
 }

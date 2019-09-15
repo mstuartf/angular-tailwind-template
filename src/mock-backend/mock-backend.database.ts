@@ -4,7 +4,7 @@ export let database: MockBackendDatabase = {
     user: [
         {
             id: 123,
-            email_address: 'mike@test.com',
+            email_address: 'test@user.com',
             name: 'password'
         }
     ]

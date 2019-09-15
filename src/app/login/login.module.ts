@@ -6,6 +6,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {LoginPage} from './login.page';
 import {LoadingSpinnerModule} from '../components/loading-spinner/loading-spinner.module';
+import {AlertModalModule} from '../components/alert-modal/alert-modal.module';
 
 const routes: Routes = [
     {
@@ -19,6 +20,7 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        AlertModalModule,
         LoadingSpinnerModule,
         RouterModule.forChild(routes)
     ],

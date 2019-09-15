@@ -41,6 +41,16 @@ export const handlers: MockBackendHandlers = {
     },
     '/sign-up': {
         POST: (request: HttpRequest<any>) => {
+            const existing: UserResponse = database.user.find(u => u.email_address === request.body.email_address);
+            if (existing) {
+                return throwError(new HttpErrorResponse({
+                    error: {
+                        header: 'Error',
+                        message: 'A user already exists with this email address!'
+                    },
+                    status: 400
+                }));
+            }
             const user: UserResponse = {
                 email_address: request.body.email_address,
                 name: request.body.name,
