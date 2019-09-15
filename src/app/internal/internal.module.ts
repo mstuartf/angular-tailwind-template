@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { InternalPage } from './internal.page';
 import { InternalGuard } from './internal.guard';
+import {AlertModalModule} from "../components/alert-modal/alert-modal.module";
+import {LoadingSpinnerModule} from "../components/loading-spinner/loading-spinner.module";
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
     imports: [
         CommonModule,
         FormsModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        AlertModalModule,
+        LoadingSpinnerModule
     ],
     declarations: [InternalPage]
 })

@@ -10,7 +10,7 @@ import * as UserActions from '../../providers/user/user.actions';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {CustomErrorResponse} from '../../providers/api/api.interface';
-import {AlertModalConfig} from '../components/alert-modal/alert-modal.component';
+import {AlertModalConfig} from "../components/alert-modal/alert-modal.interface";
 
 @Component({
     selector: 'app-sign-up',
@@ -29,11 +29,6 @@ export class SignUpPage implements OnInit {
     public showLoading: boolean;
     public alertConfig: AlertModalConfig;
     private unsubscribe = new Subject();
-
-    private static noSpacesOnlyValidator(control: FormControl) {
-        const isWhitespace = (control.value || '').trim().length === 0;
-        return isWhitespace ? { whitespace: true } : null;
-    }
 
     public ngOnInit(): void {
 
@@ -82,7 +77,7 @@ export class SignUpPage implements OnInit {
         this.alertConfig = {
             header: response.error.header,
             message: response.error.message,
-            confirm: 'ok'
+            confirm: 'OK'
         };
     }
 

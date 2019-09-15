@@ -9,8 +9,8 @@ import {takeUntil} from 'rxjs/operators';
 import {StoreAction} from '../../state/store-action.interface';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
-import {AlertModalConfig} from '../components/alert-modal/alert-modal.component';
 import {CustomErrorResponse} from '../../providers/api/api.interface';
+import {AlertModalConfig} from "../components/alert-modal/alert-modal.interface";
 
 @Component({
     selector: 'app-login',
@@ -82,7 +82,7 @@ export class LoginPage implements OnInit, OnDestroy {
         this.alertConfig = {
             header: response.error.header,
             message: response.error.message,
-            confirm: 'ok'
+            confirm: 'OK'
         };
     }
 

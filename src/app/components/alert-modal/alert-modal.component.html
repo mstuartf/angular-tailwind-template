@@ -4,16 +4,20 @@
     {{config.header}}
   </h1>
 
-  <p class="text-gray-600 mb-4">
+  <p class="text-gray-600 mb-4 text-center">
     {{config.message}}
   </p>
 
-  <button class="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded mt-4" (click)="clicked(false)" *ngIf="config.cancel">
-    {{config.cancel}}
-  </button>
+  <div class="flex justify-center">
 
-  <button class="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded mt-4" (click)="clicked(true)">
-    {{config.confirm}}
-  </button>
+    <button class="mr-1 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-4" (click)="clicked(false)" *ngIf="config.cancel">
+      {{config.cancel}}
+    </button>
+
+    <button class="ml-1 bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded mt-4" (click)="clicked(true)">
+      {{config.confirm}}
+    </button>
+
+  </div>
 
 </div>
