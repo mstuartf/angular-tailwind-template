@@ -16,6 +16,5 @@ export interface UserToken {
 export interface SignUpPayload {
     email_address: string;
     password: string;
-    name: string;
 }
 

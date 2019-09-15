@@ -14,6 +14,7 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
+      'white-1/2': 'rgba(255, 255, 255, 0.5)',
 
       gray: {
         100: '#f7fafc',
@@ -71,6 +72,17 @@ module.exports = {
         900: '#22543d',
       },
       teal: {
+        100: '#e6fffa',
+        200: '#b2f5ea',
+        300: '#81e6d9',
+        400: '#4fd1c5',
+        500: '#38b2ac',
+        600: '#319795',
+        700: '#2c7a7b',
+        800: '#285e61',
+        900: '#234e52',
+      },
+      brand: {
         100: '#e6fffa',
         200: '#b2f5ea',
         300: '#81e6d9',
@@ -425,7 +437,7 @@ module.exports = {
     alignSelf: ['responsive'],
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundColor: ['responsive', 'hover', 'focus'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'disabled'],
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
@@ -435,7 +447,7 @@ module.exports = {
     borderStyle: ['responsive'],
     borderWidth: ['responsive'],
     boxShadow: ['responsive', 'hover', 'focus'],
-    cursor: ['responsive'],
+    cursor: ['responsive', 'disabled'],
     display: ['responsive'],
     fill: ['responsive'],
     flex: ['responsive'],
@@ -463,7 +475,7 @@ module.exports = {
     minWidth: ['responsive'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
-    opacity: ['responsive', 'hover', 'focus'],
+    opacity: ['responsive', 'hover', 'focus', 'disabled'],
     order: ['responsive'],
     outline: ['responsive', 'focus'],
     overflow: ['responsive'],

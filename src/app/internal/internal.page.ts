@@ -13,10 +13,7 @@ export class InternalPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.events.subscribe(() => {
-      this.activeUrl = this.router.url;
-      console.log(this.activeUrl);
-    });
+    this.router.events.subscribe(() => this.activeUrl = this.router.url);
   }
 
 }

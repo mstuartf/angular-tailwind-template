@@ -21,12 +21,11 @@ export class SignUpPage implements OnInit {
     constructor(
         private router: Router,
         private actions$: Actions,
-        private store: Store<AppState>,
-        // private loadingCtrl: LoadingController,
-        // private alertController: AlertController
+        private store: Store<AppState>
     ) {}
 
     public signUpForm: FormGroup;
+    public showLoading: boolean;
     private unsubscribe = new Subject();
 
     private static noSpacesOnlyValidator(control: FormControl) {
@@ -38,8 +37,7 @@ export class SignUpPage implements OnInit {
 
         this.signUpForm = new FormGroup({
             emailAddress: new FormControl('', [Validators.required, Validators.email]),
-            password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-            name: new FormControl('', [Validators.required, SignUpPage.noSpacesOnlyValidator])
+            password: new FormControl('', [Validators.required, Validators.minLength(8)])
         });
 
         this.actions$.pipe(takeUntil(this.unsubscribe)).subscribe((action: StoreAction) => {
@@ -63,40 +61,23 @@ export class SignUpPage implements OnInit {
     }
 
     public signUp(): void {
-        // this.presentLoading('Signing up').then(() => {
-            const payload: SignUpPayload = {
-                email_address: this.signUpForm.controls.emailAddress.value,
-                password: this.signUpForm.controls.password.value,
-                name: this.signUpForm.controls.name.value
-            };
-            this.store.dispatch(new UserActions.SignUpRequest(payload));
-        // });
+        this.showLoading = true;
+        const payload: SignUpPayload = {
+            email_address: this.signUpForm.controls.emailAddress.value,
+            password: this.signUpForm.controls.password.value
+        };
+        this.store.dispatch(new UserActions.SignUpRequest(payload));
     }
 
     private signUpSuccess(): void {
-        // this.loadingCtrl.dismiss();
         // pass replaceUrl so that the sign-up component is destroyed after the verification message
         this.router.navigate(['/external/verify-email'], {replaceUrl: true});
+        this.showLoading = false;
     }
 
     private signUpFailure(response: HttpErrorResponse): void {
-        // this.loadingCtrl.dismiss();
+        this.showLoading = false;
         // this.presentAlert(response.error);
     }
-
-    // private async presentLoading(message: string): Promise<void> {
-    //     const loadingElement = await this.loadingCtrl.create({message, spinner: 'crescent', cssClass: 'cy-loading-spinner'});
-    //     return await loadingElement.present();
-    // }
-
-    // private async presentAlert(error: { header: string, message: string }): Promise<void> {
-    //     const alert = await this.alertController.create({
-    //         header: error.header,
-    //         message: error.message,
-    //         buttons: [{text: 'OK', cssClass: 'sign-up-error-alert-ok'}],
-    //         cssClass: 'sign-up-error-alert'
-    //     });
-    //     await alert.present();
-    // }
 
 }

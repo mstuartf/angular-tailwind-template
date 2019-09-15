@@ -19,14 +19,13 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit, OnDestroy {
 
     public loginForm: FormGroup;
+    public showLoading: boolean;
     private unsubscribe = new Subject();
 
     constructor(
         private router: Router,
         private actions$: Actions,
-        private store: Store<AppState>,
-        // private loadingCtrl: LoadingController,
-        // private alertController: AlertController
+        private store: Store<AppState>
     ) {}
 
     public ngOnDestroy(): void {
@@ -62,40 +61,22 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     public login(): void {
-        // this.presentLoading('Logging in').then(() => {
-            const payload: LoginPayload = {
-                email_address: this.loginForm.controls.emailAddress.value,
-                password: this.loginForm.controls.password.value
-            };
-            this.store.dispatch(new UserActions.LoginRequest(payload));
-        // });
+        this.showLoading = true;
+        const payload: LoginPayload = {
+            email_address: this.loginForm.controls.emailAddress.value,
+            password: this.loginForm.controls.password.value
+        };
+        this.store.dispatch(new UserActions.LoginRequest(payload));
     }
 
     private loginSuccess(): void {
-        // this.loadingCtrl.dismiss();
-        // this.loginForm.reset();
-        // pass replaceUrl so that the login component is destroyed after navigating home
         this.router.navigate(['/internal/home'], {replaceUrl: true});
+        this.showLoading = false;
     }
 
     private loginFailure(response: HttpErrorResponse): void {
-        // this.loadingCtrl.dismiss();
+        this.showLoading = false;
         // this.presentAlert(response.error);
     }
-
-    // private async presentLoading(message: string): Promise<void> {
-    //     const loadingElement = await this.loadingCtrl.create({message: message, spinner: 'crescent', cssClass: 'cy-loading-spinner'});
-    //     return await loadingElement.present();
-    // }
-
-    // private async presentAlert(error: { header: string, message: string }): Promise<void> {
-    //     const alert = await this.alertController.create({
-    //         header: error.header,
-    //         message: error.message,
-    //         buttons: [{text: 'OK', cssClass: 'login-error-alert-ok'}],
-    //         cssClass: 'login-error-alert'
-    //     });
-    //     await alert.present();
-    // }
 
 }
