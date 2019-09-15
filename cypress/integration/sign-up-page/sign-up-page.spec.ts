@@ -1,18 +1,9 @@
 import { SignUpPage } from './sign-up-page.model';
-import { Fixture } from './sign-up-page.fixture.';
-import { GmailEmail } from '../../gmail/email.interface';
 import { SetStateResponse} from '../state.interface';
 
 const page = new SignUpPage();
 
 describe('The Sign Up Page', () => {
-
-    let fixture: Fixture;
-
-    beforeEach(() => {
-        page.setResolution();
-        cy.fixture('sign-up-page').then((jsonData) => fixture = jsonData);
-    });
 
     describe('when navigating to the page without a token in local storage', () => {
 
@@ -65,13 +56,6 @@ describe('The Sign Up Page', () => {
                     page.checkAlertShowing(false);
                     cy.get('[data-cy=continueButton]').click();
                     cy.url().should('include', '/login');
-                    cy.task('check-test-email', {options: {recipient: emailAddress}})
-                        .then((resp) => {
-                            assert.isNotNull(resp, `Found email in test inbox to ${emailAddress}`);
-                            const email = resp as any as GmailEmail;
-                            const link = `${page.serverUrl}/verify_email_address/`;
-                            assert.isTrue(email.body.html.indexOf(link) > -1, 'Email contains verification link');
-                        });
                 });
             });
         });

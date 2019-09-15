@@ -4,10 +4,6 @@ const page = new LoginPage();
 
 describe('The Login Page', () => {
 
-    beforeEach(() => {
-        page.setResolution();
-    });
-
     describe('when navigating to the page without a token in local storage', () => {
 
         beforeEach(() => {

@@ -1,5 +1,4 @@
 
-const gmail = require('../gmail/gmail-client');
 
 const wp = require('@cypress/webpack-preprocessor');
 module.exports = (on) => {
@@ -20,11 +19,6 @@ module.exports = (on) => {
         },
     };
     on('file:preprocessor', wp(options));
-    on("task", {
-        "check-test-email": (args) => {
-            return gmail.checkEmailReceived(args.options.recipient, 4, 5);
-        }
-    });
 };
 
 
